@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- bootstrap docs 5.0 -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+    
+    
+        <link href="/admin/static/bootstrap/bootstrap3/swatch/journal/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+        
+        <link href="/admin/static/admin/css/bootstrap3/admin.css?v=1.1.1" rel="stylesheet">
+	    <link href="/admin/static/admin/css/bootstrap3/submenu.css" rel="stylesheet">
+        
+        <style>
+        body {
+            padding-top: 4px;
+        }
+        </style>
 
         <title>Bug Tracker: {% block title %}{% endblock %}</title>
+
     </head>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">Navbar</a>
+    <a class="navbar-brand" href="/">Bug Tracker</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -46,5 +62,9 @@
         </form>
     </div>
     </nav>
+
+    <main class="container p-5">
+        {% block main %}{% endblock %}
+    </main>
 
 </html>
