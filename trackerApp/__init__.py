@@ -4,11 +4,11 @@ from flask_admin import Admin
 
 app = Flask(__name__)
 
-# set bootswatch theme
-app.config['FLASK_ADMIN_SWATCH'] = 'journal'
+# # set bootswatch theme
+# app.config['FLASK_ADMIN_SWATCH'] = 'journal'
 
-# initialize an empty admin interface 
-admin = Admin(app, name='Bug Tracker App', template_mode='bootstrap3')
+# # initialize an empty admin interface 
+# admin = Admin(app, name='Bug Tracker App', template_mode='bootstrap3')
 
 # add modelviews for admin interface via. sqlalchemy - use MySQL or PostgresSQL 
 
