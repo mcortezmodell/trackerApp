@@ -1,8 +1,11 @@
-from flask import Flask, redirect, url_for, render_template, request
+from flask import Flask, session, redirect, url_for, render_template, request
 from flask_admin import Admin
 
 
 app = Flask(__name__)
+
+# set up secret key (move secure info to gitignore file later on)
+app.secret_key = 'pass01234567'
 
 # # set bootswatch theme
 # app.config['FLASK_ADMIN_SWATCH'] = 'journal'
