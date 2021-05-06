@@ -13,7 +13,7 @@ admin = Admin(app)
 # Add administrative views here
 admin.add_view(MyView(name='Admin', endpoint='test1', category='Manage'))
 admin.add_view(MyView(name='Developers', endpoint='test2', category='Manage'))
-admin.add_view(MyView(name='Switch to User View', endpoint='test3', category='Manage'))
+admin.add_view(MyView(name='Switch to User Mode', endpoint='test3', category='Manage'))
 
 # consider switching to modelviews for admin interface via. sqlalchemy - use MySQL or PostgresSQL 
 
