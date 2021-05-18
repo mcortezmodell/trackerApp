@@ -1,32 +1,38 @@
+import os
+
 from flask import Flask, redirect, render_template, request, url_for
 from flask_admin import Admin, BaseView, expose
 
-class MyView(BaseView):
-    @expose('/')
-    def index(self):
-        return self.render('index.html')
+def create_app(test_config=None):
+     # create and configure app
+     app = Flask(__name__, instance_relative_config=True)
+     app.config.from_mapping(
+          SECRET_KEY='dev',
+          DATABASE=os.path.join(app.instance_path, 'trackerApp.sqlite'),
+          # change secret key later (see config.py)
+     )
+     
+     if test_config is None: 
+          # load the instance config, if it exists, when not testing
+          app.config.from_pyfile('config.py', silent=True)
+     else:
+          # load the test config if passed in 
+          app.config.from_mapping(test_config)
 
-app = Flask(__name__)
+     # check if instance folder exists
+     try: 
+          os.makedirs(app.instance_path)
+     except OSError:
+          pass
 
-# initialize admin interface views 
-admin = Admin(app)
-# Add administrative views here
-admin.add_view(MyView(name='Admin', endpoint='test1', category='Manage'))
-admin.add_view(MyView(name='Developers', endpoint='test2', category='Manage'))
-admin.add_view(MyView(name='Switch to User Mode', endpoint='test3', category='Manage'))
+     @app.route('/', methods=["POST", "GET"])
+     def index():
+          return render_template("index.html")
 
-# consider switching to modelviews for admin interface via. sqlalchemy - use MySQL or PostgresSQL 
+     @app.route('/login', methods=["POST", "GET"])
+     def login():
+          return render_template("login.html")
 
-# set up secret key (move secure info to gitignore file later on)
-# app.secret_key = 'pass01234567'
-
-@app.route('/', methods=["POST", "GET"])
-def index():
-     return render_template("index.html")
-
-@app.route('/login', methods=["POST", "GET"])
-def login():
-     return render_template("login.html")
-
-if __name__ == "__main__":
-    app.run()
+     return app
+     # if __name__ == "__main__":
+     # app.run(debug=True)
