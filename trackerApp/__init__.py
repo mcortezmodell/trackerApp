@@ -25,6 +25,10 @@ def create_app(test_config=None):
      except OSError:
           pass
 
+     # register database commands
+     from . import db
+     db.init_app(app)
+
      @app.route('/', methods=["POST", "GET"])
      def index():
           return render_template("index.html")
